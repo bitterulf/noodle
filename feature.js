@@ -37,3 +37,23 @@ setTimeout(function() {
 }, 4000);
 
 mainStream.write({});
+
+const EventEmitter = require('events');
+
+class Bus extends EventEmitter {}
+
+const bus = new Bus();
+
+var eventStream = _('event', bus);
+
+eventStream
+    .debounce(5000)
+    .latest()
+    .each(function (result) {
+        console.log('zz', result);
+    });
+
+bus.emit('event', {});
+
+
+
