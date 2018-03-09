@@ -1,6 +1,9 @@
 // features/support/steps.js
 
 var webdriver = require('selenium-webdriver');
+var phantomjs = require('phantomjs-prebuilt')
+var webdriverio = require('webdriverio')
+var wdOpts = { desiredCapabilities: { browserName: 'phantomjs' } }
 
 const { Given, When, Then } = require('cucumber')
 const { expect } = require('chai')
@@ -58,3 +61,29 @@ Then(/^I see (.*) in the webpage title$/, function (string, callback) {
         }
     });
 });
+
+Given('I open phantomJS', function (callback) {
+    phantomjs.run('--webdriver=4444').then(program => {
+        this.wdKill = program.kill;
+        callback();
+    })
+});
+
+Given(/^I surf with phantomJS to (.*)$/, function (url) {
+    this.wdPage = webdriverio.remote(wdOpts).init()
+        .url(url);
+});
+
+Then(/^I see (.*) in the webpage title in phantomJS$/, function (expectedTitle, callback) {
+    this.wdPage
+        .getTitle().then(title => {
+            try {
+                expect(title).to.eql(expectedTitle)
+                callback();
+            }
+            catch(e) {
+                callback(e);
+            }
+        })
+});
+

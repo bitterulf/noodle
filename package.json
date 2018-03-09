@@ -20,7 +20,9 @@
     "chai": "^4.1.2",
     "cucumber": "^4.0.0",
     "dotenv": "^5.0.1",
+    "phantomjs-prebuilt": "^2.1.16",
     "plop": "^1.9.1",
     "selenium-webdriver": "^4.0.0-alpha.1",
+    "webdriverio": "^4.12.0"
   }
 }
