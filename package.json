@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/bitterulf/noodle#readme",
   "devDependencies": {
+    "chai": "^4.1.2",
+    "cucumber": "^4.0.0",
     "plop": "^1.9.1"
   }
 }
