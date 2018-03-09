@@ -1,4 +1,5 @@
 # features/simple_math.feature
+@Only
 Feature: Simple maths
   In order to do maths
   As a developer
